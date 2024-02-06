@@ -36,7 +36,7 @@ const User = sequelize.define('employeedetails', {
 app.use(express.json());
 app.post('/upload', async (req, res) => {
   try {
-    const filePath = req.body.filePath;  // "filePath":"C:\\Users\\Asus\\Desktop\\nodejs_pratice\\Book1.xlsx"
+    const filePath = req.body.filePath;  // "filePath":"C:\\Users\\Asus\\Desktop\\nodejs_pratice\\Book2.xlsx"
 
     const workbook = new ExcelJS.Workbook();
     await workbook.xlsx.readFile(filePath);
@@ -48,7 +48,7 @@ app.post('/upload', async (req, res) => {
       const data = row.values;
       console.log('Row values:', data);
       if (data[1] && data[2] && data[3] && data[4] && data[5] && data[6]) {
-        const hashedPassword = bcrypt.hashSync(data[5], 10);
+        const hashedPassword = bcrypt.hashSync(data[6], 10);
         await User.create({
           id: data[1],
           name: data[2],
